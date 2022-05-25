@@ -1,11 +1,12 @@
+import os
 import torch
 import numpy as np
 import onnxruntime
 import albumentations as A
 
 
-MODEL_PATH_SCE = "./pan-resnest26d-sce.onnx"
-MODEL_PATH_LDL = "./pan-resnest50d-ldl.onnx"
+MODEL_PATH_SCE = os.path.join(os.getcwd(), "src/pan-resnest26d-sce.onnx")
+MODEL_PATH_LDL = os.path.join(os.getcwd(), "src/pan-resnest50d-ldl.onnx")
 MODEL_PATH = {
     "ldl": MODEL_PATH_LDL, 
     "sce": MODEL_PATH_SCE
