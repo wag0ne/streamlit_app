@@ -1,8 +1,8 @@
 import os
-import torch
 import numpy as np
 import onnxruntime
-import albumentations as A
+from albumentations import Resize, Normalize, Compose
+from torch import tensor, sigmoid
 
 
 MODEL_PATH_SCE = os.path.join(os.getcwd(), "src/pan-resnest26d-sce.onnx")
@@ -15,7 +15,7 @@ MODEL_PATH = {
 THRESHOLD = 0.7
 
 def _transform_image(image: np.ndarray) -> np.ndarray:
-    transform = A.Compose([A.Resize(256, 256), A.Normalize()])
+    transform = Compose([Resize(256, 256), Normalize()])
     img2transform = transform(image=image)
     img = img2transform["image"]
     img2input = np.transpose(img, (2, 0, 1))
@@ -27,8 +27,8 @@ def _output_preprocessing(mask: np.ndarray, logits: np.ndarray) -> tuple:
 
     probs = softmax(logits)
 
-    mask = torch.tensor(mask)[0][0]
-    mask_ = (torch.sigmoid(mask) > THRESHOLD).numpy().astype(np.uint8)
+    mask = tensor(mask)[0][0]
+    mask_ = (sigmoid(mask) > THRESHOLD).numpy().astype(np.uint8)
 
     return mask_, probs
 
