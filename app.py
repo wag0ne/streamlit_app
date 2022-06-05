@@ -44,7 +44,6 @@ def run(uploaded_file: BinaryIO, model_name: str):
         st.plotly_chart(prob_figure)
 
 def main():
-    # st.title("RedHead \"AI\" Simple Demo")
     st.header("Demo for Detection and Classification of acne severity")
 
     with st.sidebar:
