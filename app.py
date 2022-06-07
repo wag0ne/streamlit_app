@@ -73,7 +73,7 @@ def main():
             * `Foreign objects` in front of the face.
             * Selfies where `more than one person` is present. \
                 *Estimates are made only for one person in the photo, not two, not three, only for one person.*
-            * `Other body parts` ~like ass~ like arm etc.
+            * `Other body parts` like arm etc.
             """)
 
     type_input = st.radio("Choose a convenient photo upload method", ("Upload file", "Take a photo"))
